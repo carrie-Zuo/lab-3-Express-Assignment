@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Book Tickets</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <form action="/form" method=POST>
+        <fieldset>
+            <legend>Booking Details</legend>
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div>
+                <label for="numTickets">No. of Tickets:</label>
+                <input type="number" id="numTickets" min=1 max=7 name="numTickets">
+            </div>
+
+            <!-- More form elements -->
+
+            <div>
+                <span>Gender:</span><br>
+                <span>
+                    <input type="radio" value="Male" name="gender">Male
+                    <input type="radio" value="Female" name="gender">Female
+                </span>
+            </div>
+
+            <div>
+                <span>Select your favourite team:</span>
+                <select name="team" onchange="teamSelected(this.value)">
+                    <option value="">Please select a team:</option>
+                    <option value="Avengers">Avengers</option>
+                    <option value="JLA">Justice League</option>
+                </select>
+            </div>
+
+            <div>
+                <span>Select your favourite hero:</span>
+                <select name="hero" id="hero" disabled>
+                </select>
+            </div>
+
+            <div>
+                <span>Remarks:</span><br>
+                <textarea name="Remarks" cols=50 rows=12></textarea>
+            </div>
+
+
+
+
+            <div class="submit">
+                <input type="submit" value="Submit">
+            </div>
+        </fieldset>
+    </form>
+
+    <script>
+        var avengers = ["Captain America", "Iron Man", "Thor", "Hulk", "Black Widow", "Hawkeye"];
+        var jla = ["Superman", "Batman", "Wonder Woman", "Flash", "Green Lantern", "Aquaman"];
+
+        function teamSelected(teamValue) {
+
+            //  alert(teamValue);
+            var heroSelect = document.getElementById("hero");
+            heroSelect.options.length = 0;
+
+            if (teamValue == "Avengers") {
+
+avengers.forEach(function (item) {
+    var option = document.createElement("option");
+    option.text = item;
+    option.value = item;
+    heroSelect.add(option);
+});
+
+heroSelect.disabled = false;
+
+} else if (teamValue == "JLA") {
+
+jla.forEach(function (item) {
+    var option = document.createElement("option");
+    option.text = item;
+    option.value = item;
+    heroSelect.add(option);
+});
+
+heroSelect.disabled = false;
+
+} else {
+
+heroSelect.disabled = true;
+
+}
+
+        }
+
+    </script>
+</body>
+
+</html>
